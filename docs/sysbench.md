@@ -17,6 +17,9 @@ annotations to the pod metadata.
 The `pin_node` parameter allows to place the sysbench pod 
 on a specific node, using the `hostname` label.
 
+The `storageclass` and `storagesize` options can be set to have sysbench run on a particular StorageClass volume.
+If `storageclass` is not provided, sysbench runs on an `emptyDir` volume by default.
+
 Note: please ensure you set 0 for other workloads if editing the
 [cr.yaml](../config/samples/sysbench/cr.yaml) file otherwise
 
@@ -36,6 +39,8 @@ spec:
       #kind: vm
       # If you want to run this as a VM uncomment the above
       #pin_node: "worker-0.mylab.example.com"
+      #storageclass: ocs-storagecluster-ceph-rbd
+      #storagesize: 200Gi
       tests:
       - name: cpu
         parameters:
